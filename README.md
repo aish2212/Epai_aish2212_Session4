@@ -16,7 +16,10 @@
 
 ## Functions
 # __init__(self,user_input)
-   - 
+   - The init function get the user input, and converts the user input to Qualean type
+   - The init function checks whether the user input is of values -1, 0 or 1
+   - Qualean type number is the number where the user input of [1,0,-1] is multiplied with a imaginary number generated randomly using random.uniform(-1, 1).
+   - The precision of the output qualean value is of 10 decimal places.
 
 # __and__(self, other)
 	- Add a Qualean to another Qualean.
