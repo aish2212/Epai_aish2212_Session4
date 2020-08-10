@@ -155,4 +155,48 @@
 - test_Qualean_invertsign
 	- test invert function.
 	- Inverting the q1  and adding with the qualean q1, test whether the output is equal to zero.
+	
+#PYTEST
+
+Run pytest -vv
+  pytest -vv
+  shell: /bin/bash -e {0}
+  env:
+    pythonLocation: /opt/hostedtoolcache/Python/3.8.5/x64
+============================= test session starts ==============================
+platform linux -- Python 3.8.5, pytest-6.0.1, py-1.9.0, pluggy-0.13.1 -- /opt/hostedtoolcache/Python/3.8.5/x64/bin/python
+cachedir: .pytest_cache
+rootdir: /home/runner/work/Epai_aish2212_Session4/Epai_aish2212_Session4
+collecting ... collected 28 items
+
+test_session4.py::test_readme_exists PASSED                              [  3%]
+test_session4.py::test_readme_contents PASSED                            [  7%]
+test_session4.py::test_readme_file_for_formatting PASSED                 [ 10%]
+test_session4.py::test_readme_proper_description PASSED                  [ 14%]
+test_session4.py::test_indentations PASSED                               [ 17%]
+test_session4.py::test_function_name_had_cap_letter PASSED               [ 21%]
+test_session4.py::test_functions_list PASSED                             [ 25%]
+test_session4.py::test_Qualean_equality PASSED                           [ 28%]
+test_session4.py::test_Qualean_add PASSED                                [ 32%]
+test_session4.py::test_Qualean_mul PASSED                                [ 35%]
+test_session4.py::test_Qualean_and PASSED                                [ 39%]
+test_session4.py::test_Qualean_or PASSED                                 [ 42%]
+test_session4.py::test_Qualean_float PASSED                              [ 46%]
+test_session4.py::test_Qualean_bool PASSED                               [ 50%]
+test_session4.py::test_Qualean_repr PASSED                               [ 53%]
+test_session4.py::test_Qualean_str PASSED                                [ 57%]
+test_session4.py::test_Qualean_ge PASSED                                 [ 60%]
+test_session4.py::test_Qualean_gt PASSED                                 [ 64%]
+test_session4.py::test_Qualean_le PASSED                                 [ 67%]
+test_session4.py::test_Qualean_lt PASSED                                 [ 71%]
+test_session4.py::test_Qualean_sqrt PASSED                               [ 75%]
+test_session4.py::test_Qualean_sum_100times PASSED                       [ 78%]
+test_session4.py::test_Qualean_return_True_if_q2_notdefined PASSED       [ 82%]
+test_session4.py::test_Qualean_return_false_if_q2_notdefined PASSED      [ 85%]
+test_session4.py::test_Qualean_1millionsum_closetozero PASSED            [ 89%]
+test_session4.py::test_Qualean_invalid_integer_input PASSED              [ 92%]
+test_session4.py::test_Qualean_bankers_rounding PASSED                   [ 96%]
+test_session4.py::test_Qualean_invertsign PASSED                         [100%]
+
+============================== 28 passed in 4.89s ==============================
 
