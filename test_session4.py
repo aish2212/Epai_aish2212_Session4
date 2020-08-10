@@ -208,24 +208,38 @@ def test_Qualean_sum_100times():
     assert math.isclose(new_q, q1 * 100, rel_tol=1e-4)
     
 #23
-#def test_Qualean_q1andq2_q1False_q2notdefined():
+#q1 or q2 returns True when q2 is not defined as well and q1 is not false
+def test_return_True_if_q2_notdefined():
+    q1 = session4.Qualean(1)
+    q3 = session4.Qualean(-1)
+
+    assert True == (bool(q1) or q2)
+    assert True == (bool(q3) or q4)
+    
 #24
-#def test_Qualean_q1orq2_q1True_q2notdefined():
+#q1 and q2 returns False when q2 is not defined as well and q1 is False    
+def test_return_false_if_q2_notdefined():
+    q1 = session4.Qualean(0)
+
+    assert False == (q1 and q2)
+   
 #25
 def test_Qualean_1millionsum_closetozero():
-    q1 = 0
-    new_q = session4.Qualean(0)
-    for i in range(1000000):
-        q1 = Decimal(random.choice([-1, 1, 0]))
-        q1 = session4.Qualean(q1)
-        new_q += q1.input_value
-    assert math.isclose(new_q, 0, rel_tol=100)
+     q1 = 0
+     new_q = session4.Qualean(0)
+     for i in range(1000000):
+         q1 = Decimal(random.choice([-1, 1, 0]))
+         q1 = session4.Qualean(q1)
+         new_q += q1.input_value
+     assert math.isclose(new_q, 0, rel_tol=1)
   
 #26
 def test_function_invalid_integer_input():
     with pytest.raises(ValueError) as execinfo:
         _ = session4.Qualean(2)
     assert "ValueError" in str(execinfo)
+    
+
 
 
 

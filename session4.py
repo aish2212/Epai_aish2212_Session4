@@ -9,7 +9,7 @@ class Qualean:
     '''
     def __init__(self, user_input):
         self.user_input = user_input
-        if ((user_input == -1) | (user_input == 0) | (user_input == 1)):
+        if (user_input in [-1, 0, 1]):
             with localcontext() as ctx:
                 ctx.rounding = ROUND_HALF_UP
                 ctx.prec = 10
@@ -22,7 +22,10 @@ class Qualean:
         return self.input_value
 
     def __and__(self, other):
-        return bool(self.input_value) and bool(other.input_value)
+        if not isinstance(other, Qualean):
+            return False
+        else:
+            return bool(self.input_value) and bool(other.input_value)
     
     def __or__(self, other):
         return bool(self.input_value) or bool(other.input_value)
