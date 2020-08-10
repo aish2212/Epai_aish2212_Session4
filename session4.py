@@ -28,11 +28,17 @@ class Qualean:
         return bool(self.input_value) or bool(other.input_value)
         
     def __ge__(self, other):
-        return self.input_value >= other.input_value
+        if not isinstance(other, Qualean):
+            return self.input_value >= other
+        else:
+            return self.input_value >= other.input_value
 
         
     def __gt__(self, other):
-        return  self.input_value > other.input_value
+        if not isinstance(other, Qualean):
+            return self.input_value > other
+        else:
+            return self.input_value > other.input_value
 
         
     def __invertsign__(self):
@@ -40,26 +46,41 @@ class Qualean:
 
         
     def __le__(self, other):
-        return self.input_value <= other.input_value
+        if not isinstance(other, Qualean):
+            return self.input_value <= other
+        else:
+            return self.input_value <= other.input_value
 
         
     def __lt__(self, other):
-        return self.input_value < other.input_value
+        if not isinstance(other, Qualean):
+            return self.input_value < other
+        else:
+            return self.input_value < other.input_value
 
         
     def __mul__(self, other):
-        with localcontext() as ctx:
-            ctx.rounding = ROUND_HALF_UP
-            ctx.prec = 10
-            return self.input_value * other.input_value
+        if not isinstance(other, Qualean):
+            return self.input_value * other
+        else:
+            with localcontext() as ctx:
+                ctx.rounding = ROUND_HALF_UP
+                ctx.prec = 10
+                return self.input_value * other.input_value
 
             
     def __eq__(self, other):
-        return self.input_value == other.input_value
+        if not isinstance(other, Qualean):
+            return self.input_value == other
+        else:
+            return self.input_value == other.input_value
 
         
     def __add__(self, other):
-        return  self.input_value + other.input_value
+        if not isinstance(other, Qualean):
+            return self.input_value + other
+        else:
+            return self.input_value + other.input_value
 
         
     def __str__(self):

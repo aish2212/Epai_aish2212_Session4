@@ -5,7 +5,7 @@ import session4
 import os
 import inspect
 import re
-import math
+import math, cmath
 
 import decimal
 from decimal import Decimal
@@ -114,15 +114,15 @@ def test_Qualean_equality():
 
 #9   
 def test_Qualean_add():
-    q1=session4.Qualean(INPUT_VALUE_1)
-    q2=session4.Qualean(INPUT_VALUE_2)
-    assert((q1+q2)==(round(q1)+round(q2)))
+    q1 = session4.Qualean(INPUT_VALUE_1)
+    q2 = session4.Qualean(INPUT_VALUE_2)
+    assert math.isclose(q1.__add__(q2), q1.input_value+q2.input_value, rel_tol=1e-8 )
  
 #10
 def test_Qualean_mul():
-    q1=session4.Qualean(INPUT_VALUE_1)
-    q2=session4.Qualean(INPUT_VALUE_2)
-    assert((q1*q2)==(round(q1)*round(q2)))
+    q1 = session4.Qualean(INPUT_VALUE_1)
+    q2 = session4.Qualean(INPUT_VALUE_2)
+    assert math.isclose(q1.__mul__(q2), q1.input_value*q2.input_value, rel_tol=1e-8 )
 
 #11    
 def test_Qualean_and():
@@ -194,23 +194,38 @@ def test_Qualean_lt():
 #21
 def test_Qualean_sqrt():
     q1=session4.Qualean(INPUT_VALUE_1)
-    assert((session4.Qualean.__sqrt__(q1)) == (Decimal(round(q1)).sqrt()))
+    if(q1>=0):
+        assert ((q1.__sqrt__())==math.sqrt(q1))
+    else:
+        assert ((q1.__sqrt__())==cmath.sqrt(q1))
     
 #22
-def test_Qualean_sum_1000times():
-    q2 = q1 =session4.Qualean(INPUT_VALUE_1)
+def test_Qualean_sum_100times():
+    q1 =session4.Qualean(INPUT_VALUE_1)
+    new_q = session4.Qualean(0)
     for i in range(100):
-        q1+= q1
-    assert q1 == Decimal(100)*(q2)
+        new_q += q1.input_value
+    assert math.isclose(new_q, q1 * 100, rel_tol=1e-4)
+    
 #23
 #def test_Qualean_q1andq2_q1False_q2notdefined():
 #24
 #def test_Qualean_q1orq2_q1True_q2notdefined():
 #25
-#def test_Qualean_1millionsum_closetozero():
-
-
-
+def test_Qualean_1millionsum_closetozero():
+    q1 = 0
+    new_q = session4.Qualean(0)
+    for i in range(1000000):
+        q1 = Decimal(random.choice([-1, 1, 0]))
+        q1 = session4.Qualean(q1)
+        new_q += q1.input_value
+    assert math.isclose(new_q, 0, rel_tol=100)
+  
+#26
+def test_function_invalid_integer_input():
+    with pytest.raises(ValueError) as execinfo:
+        _ = session4.Qualean(2)
+    assert "ValueError" in str(execinfo)
 
 
 
