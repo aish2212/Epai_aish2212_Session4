@@ -15,22 +15,22 @@ INPUT_VALUE_1 = Decimal(random.choice([-1, 1, 0]))
 INPUT_VALUE_2 = Decimal(random.choice([-1, 1, 0]))
 
 README_CONTENT_CHECK_FOR = [
-    'Qualean'
+    'Qualean',
     '__and__',
     '__or__',
     '__repr__',
-    '__str__'
-    '__add__'
-    '__eq__'
-    '__float__'
-    '__ge__'
-    '__gt__'
-    '__invertsign__'
-    '__le__'
-    '__lt__'
-    '__mul__'
-    '__sqrt__'
-    '__bool__'
+    '__str__',
+    '__add__',
+    '__eq__',
+    '__float__',
+    '__ge__',
+    '__gt__',
+    '__invertsign__',
+    '__le__',
+    '__lt__',
+    '__mul__',
+    '__sqrt__',
+    '__bool__',
 ]
 
 FUNCTION_LIST = [
@@ -149,7 +149,7 @@ def test_Qualean_float():
     assert(float(q1)==float(round(q1)))
 
 #14
-def test_bool():
+def test_Qualean_bool():
     q1=session4.Qualean(0)
     q2=session4.Qualean(1)
     q3=session4.Qualean(-1)
@@ -209,7 +209,7 @@ def test_Qualean_sum_100times():
     
 #23
 #q1 or q2 returns True when q2 is not defined as well and q1 is not false
-def test_return_True_if_q2_notdefined():
+def test_Qualean_return_True_if_q2_notdefined():
     q1 = session4.Qualean(1)
     q3 = session4.Qualean(-1)
 
@@ -218,7 +218,7 @@ def test_return_True_if_q2_notdefined():
     
 #24
 #q1 and q2 returns False when q2 is not defined as well and q1 is False    
-def test_return_false_if_q2_notdefined():
+def test_Qualean_return_false_if_q2_notdefined():
     q1 = session4.Qualean(0)
 
     assert False == (q1 and q2)
@@ -234,17 +234,20 @@ def test_Qualean_1millionsum_closetozero():
      assert math.isclose(new_q, 0, rel_tol=1)
   
 #26
-def test_function_invalid_integer_input():
+def test_Qualean_invalid_integer_input():
     with pytest.raises(ValueError) as execinfo:
         _ = session4.Qualean(2)
     assert "ValueError" in str(execinfo)
-    
-
-
-
-
-
-
-
+	
+#27
+def test_Qualean_bankers_rounding():
+    q1 = session4.Qualean(1)
+    assert len(str(q1).split(".")[-1]) == 10
+	
+#28 
+def test_Qualean_invertsign():
+    q1 = session4.Qualean(INPUT_VALUE_1)
+    y = q1.__invertsign__()
+    assert q1 + y == 0
 
     
